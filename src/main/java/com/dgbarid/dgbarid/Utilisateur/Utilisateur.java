@@ -1,18 +1,17 @@
 package com.dgbarid.dgbarid.Utilisateur;
 
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import static javax.persistence.GenerationType.AUTO;
+import com.dgbarid.dgbarid.Destinataire.Destinataire;
+
+
 @Entity
-@Table(name = "Utilisateur",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "NomCompletU"
-                        + ""),
-                @UniqueConstraint(columnNames = "email")
-        })
+@Table
 public class Utilisateur {
 
         @Id
@@ -24,6 +23,7 @@ public class Utilisateur {
         @GeneratedValue(strategy = GenerationType.AUTO)
         private int idUtilisateur;
         @Column(name = "NomCompletU")
+        
         private String nomCompletU;
         private String adresse;
         private int codePostale;
@@ -31,18 +31,50 @@ public class Utilisateur {
         private String region;
         private boolean isAvtive;
         private int tel;
+        @NotBlank
+    @Size(max = 60)
+    @Email
+        private String email;
+        private String password;
+
+    //     @OneToMany 
+    //    private List<Destinataire> destinataire;
 
         public Utilisateur(){}
 
-        public Utilisateur(int idUtilisateur,int codePostale,String password,String email,String nomCompletU,String adresse,String string,String pays,String region,int tel){
-            this.tel = tel;
+        
+
+
+    
+
+
+
+
+
+
+
+    public Utilisateur(int idUtilisateur, String nomCompletU, String adresse, int codePostale, String pays,
+                String region, boolean isAvtive, int tel, @NotBlank @Size(max = 60) @Email String email,
+                String password, List<Destinataire> destinataire, String fileName, int code) {
+            this.idUtilisateur = idUtilisateur;
+            this.nomCompletU = nomCompletU;
             this.adresse = adresse;
             this.codePostale = codePostale;
-            this.idUtilisateur = idUtilisateur;
-            this.email = email;
             this.pays = pays;
+            this.region = region;
+            this.isAvtive = isAvtive;
+            this.tel = tel;
+            this.email = email;
             this.password = password;
+            // this.destinataire = destinataire;
+            this.fileName = fileName;
+            this.code = code;
         }
+
+
+
+
+
 
     public String getFileName() {
         return fileName;
@@ -62,11 +94,7 @@ public class Utilisateur {
 
     private String fileName;
         private int code;
-    @NotBlank
-    @Size(max = 60)
-    @Email
-        private String email;
-        private String password;
+    
 
     public int getIdUtilisateur() {
         return idUtilisateur;
@@ -147,5 +175,42 @@ public class Utilisateur {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    // public List<Destinataire> getDestinataire() {
+    //     return destinataire;
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+    // public void setDestinataire(List<Destinataire> destinataire) {
+    //     this.destinataire = destinataire;
+    // }
+
+
+
+
+    
+    
+    
 }
 

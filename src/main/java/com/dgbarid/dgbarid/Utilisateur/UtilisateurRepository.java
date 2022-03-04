@@ -9,7 +9,9 @@ import java.util.Optional;
 
 @Repository
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Integer> {
+    
     Optional<Utilisateur> findBynomCompletU(String nomCompletU);
+    Utilisateur findByemailAndPassword(String email, String password);
 
     List<Utilisateur> findAllByEmail(String email);
 }
